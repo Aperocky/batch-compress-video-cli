@@ -4,7 +4,6 @@ import re
 import shutil
 import ffmpeg
 
-
 class VideoCompressor:
 
     @staticmethod
@@ -107,8 +106,6 @@ class VideoCompressor:
             "stats": None,
         }
         arg_dict.update(kwargs)
-        output_path = re.sub(".mp4$", "", video_path, flags=re.I) + "_compressed.mp4"
-        work = ffmpeg.input(video_path)
         if self.scale != 1:
             original_width, original_height = VideoCompressor.get_dimension(video_path)
             new_width = int(original_width * self.scale)
@@ -117,7 +114,9 @@ class VideoCompressor:
                 new_width += 1
             if new_height % 2 != 0:
                 new_height += 1
-            work = ffmpeg.filter(work, 'scale', new_width, new_height)
+            arg_dict["vf"] = "scale={}:{}".format(new_width, new_height)
+        output_path = re.sub(".mp4$", "", video_path, flags=re.I) + "_compressed.mp4"
+        work = ffmpeg.input(video_path)
         work = ffmpeg.output(work, output_path, **arg_dict)
         work.run()
         return output_path
