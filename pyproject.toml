@@ -1,0 +1,23 @@
+[project]
+name = "batch-compress-video-cli"
+version = "0.1.0"
+description = "Compress raw video from action cameras from directory or path using ffmpeg, with a simple cli to automate the recurring commands."
+readme = "README.md"
+license = {file = "LICENSE.txt"}
+keywords = ["ffmpeg", "compress", "video", "batch", "cli"]
+authors = [
+  {name = "Rocky Li", email = "aperocky@gmail.com" }
+]
+dependencies = [
+  "ffmpeg-python"
+]
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[project.scripts]
+batch_compress_video = "video_compress:main"
+
+[build-system]
+requires = ["setuptools>=43.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
