@@ -1,6 +1,6 @@
 [project]
 name = "batch-compress-video-cli"
-version = "0.1.0"
+version = "0.2.0"
 description = "Compress raw video from action cameras from directory or path using ffmpeg, with a simple cli to automate the recurring commands."
 readme = "README.md"
 license = {file = "LICENSE.txt"}
@@ -12,8 +12,12 @@ dependencies = [
   "ffmpeg-python"
 ]
 
+[project.urls]
+"Homepage" = "https://github.com/Aperocky/batch-compress-video-cli"
+"Source" = "https://github.com/Aperocky/batch-compress-video-cli"
+
 [project.optional-dependencies]
-test = ["pytest"]
+test = ["pytest", "coverage"]
 
 [project.scripts]
 batch_compress_video = "video_compress:main"
