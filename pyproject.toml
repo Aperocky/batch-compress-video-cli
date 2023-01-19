@@ -1,6 +1,6 @@
 [project]
 name = "batch-compress-video-cli"
-version = "0.2.0"
+version = "0.2.1"
 description = "Compress raw video from action cameras from directory or path using ffmpeg, with a simple cli to automate the recurring commands."
 readme = "README.md"
 license = {file = "LICENSE.txt"}

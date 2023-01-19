@@ -28,7 +28,7 @@ class VideoCompressor:
             size_str = "{} {}".format(file_size, units[curr_unit])
             if curr_unit == 4:
                 break
-        ffprobe_string = "SIZE: {}; DURATION: {:.1f}; FRAME_RATE: {}; RESOLUTION: {}x{}".format(size_str, duration, frame_rate, width, height)
+        ffprobe_string = "SIZE: {}; DURATION: {:.1f}s; FRAME_RATE: {}; RESOLUTION: {}x{}".format(size_str, duration, frame_rate, width, height)
         return ffprobe_string
 
     @staticmethod
@@ -180,17 +180,17 @@ def main():
     args = parser.parse_args()
     # arg validation.
     if args.source and not os.path.isdir(args.source):
-        raise "Source must be a valid directory"
+        raise ValueError("Source must be a valid directory")
     if args.destination and not os.path.isdir(args.destination):
-        raise "Destination must be a valid directory"
+        raise ValueError("Destination must be a valid directory")
     if args.process_dir and not os.path.isdir(args.process_dir):
-        raise "Process directory must be a valid directory"
+        raise ValueError("Process directory must be a valid directory")
     if args.crf < 15 or args.crf > 30:
-        raise "CRF value should be between 15 and 30"
+        raise ValueError("CRF value should be between 15 and 30")
     if args.scale < 0.1 or args.scale > 2:
-        raise "Scale must be between 0.1 and 2"
+        raise ValueError("Scale must be between 0.1 and 2")
     if not args.preset in PRESET_VALUES:
-        raise "preset values must be one of {}".format(PRESET_VALUES)
+        raise ValueError("preset values must be one of {}".format(PRESET_VALUES))
     compressor = VideoCompressor(args.source, args.destination, args.process_dir, args.crf, args.preset, args.scale, args.delete_orig)
     compressor.run()
 
