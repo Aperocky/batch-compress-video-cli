@@ -1,4 +1,4 @@
-## Batch Video Compress cli
+## Batch Compress Video cli
 
 `pip install batch-compress-video-cli`
 
